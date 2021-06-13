@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="entity.Person" table="tbl_person" catalog="testdb">
+			<id name="personId" type="int">
+				<column name="PERSON_ID" unique="true" />
+				<generator class="identity"></generator>
+			</id>
+			
+			<!-- PERSON_NAME -->
+			<property name="personName" type="string">
+				<column name="PERSON_NAME" unique="false" length="50"  not-null="true" />
+			</property>
+			
+			
+			<!-- PERSON_LASTNAME -->
+			<property name="personLastname" type="string">
+				<column  name="PERSON_LASTNAME" unique="false" length="100" not-null="true"/>
+			</property>
+			
+			<!-- PERSON_ADDRESS -->
+			<property name="personAddress" type="string">
+				<column name="PERSON_ADDRESS" unique="false" length="250" not-null="false" />			
+			</property>
+			
+			
+			<!-- PERSON_DateOfBirth -->
+			<property name="personDateOfBirth" type="date">
+				<column name="PERSON_DATE_OF_BIRTH"/>
+			</property>			
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
