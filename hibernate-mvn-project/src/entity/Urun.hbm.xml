@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="entity.Urun"   table="tbl_urun" catalog="testdb">
+			<id name="urunId" type="int">
+				<column name="URUN_ID"  />
+				<generator class="identity"></generator>
+			</id>
+			
+			<one-to-one name="urunDetay" class="entity.UrunDetay" cascade="save-update"></one-to-one>  <!-- save-update zamanında urun'de herhangi bir değişiklik yaptığımda, urun detayda etkilensin. -->
+	
+			<property name="urunKodu" type="string">
+				<column name="URUN_KODU" length="20" not-null="true" unique="false"/>
+			</property>
+			
+			<property name="urunAdi" type="string">
+				<column name="URUN_ADI" length="250" not-null="true" />
+			</property>
+	
+	</class>
+</hibernate-mapping>

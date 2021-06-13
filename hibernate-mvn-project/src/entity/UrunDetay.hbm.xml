@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+
+<hibernate-mapping>
+
+	<class name="entity.UrunDetay" table="tbl_urunDetay" catalog="testdb">
+		<id name="urunDetayId" type="int">
+			<column name="URUN_DETAY_ID" />
+			<generator  class="foreign" > 
+				<param name="property">urun</param>
+			</generator>
+		</id>
+	
+		<one-to-one name="urun" class="entity.Urun" constrained="true"></one-to-one>
+		
+		<property name="urunAciklamasi" type="string">
+			<column name="URUN_ACIKLAMASI" length="250" not-null="true" />
+		</property>
+		
+		<property name="firmaAdi" type="string">
+			<column name="FIRMA_ADI" length="250" not-null="true" />
+		</property>
+		
+		<property name="firmaAciklamasi" type="string">
+			<column name="FIRMA_ACIKLAMASI" length="250" not-null="true"/>
+		</property>
+		
+		<property name="listelenmeTarihi" type="date">
+			<column  name="LISTELENME_TARIHI" length="10" not-null="true" />
+		</property>
+	
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+
