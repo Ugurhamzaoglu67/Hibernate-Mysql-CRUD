@@ -11,16 +11,17 @@ import org.hibernate.Session;
 import entity.Person;
 
 public class MainCrud {
+	private static  Session session  = HibernateUtil.getSessionfactory().openSession();
 	 
 	public static void main(String[] args) {
 		
-		readPerson();
+		updatePerson(5,"Hande","New Lastname",6700.150,"Ankara");	
 
 	}
 	
 	
 	// CREATE
-	public static void addPerson() {
+	private static void addPerson() {
 		try {
 			Session session  = HibernateUtil.getSessionfactory().openSession();
 			session.beginTransaction();
@@ -56,9 +57,10 @@ public class MainCrud {
 	}
 	
 	// READ
-	public static void readPerson() {
-		Session session  = HibernateUtil.getSessionfactory().openSession();
+	private static void readPerson() {
+		
 		session.beginTransaction();
+		
 		List<Person> personList = session.createQuery("FROM Person").list();
 		
 		for(Person p : personList) {
@@ -73,4 +75,27 @@ public class MainCrud {
 	}
 
 
+	// UPDATE
+	private static void updatePerson(int personId, String newName, String newLastname, double newSalary, String newAdress) {
+		try {
+			session.beginTransaction();
+			
+			Person person  = session.get(Person.class, personId);
+			
+			person.setPersonName(newName);
+			person.setPersonLastname(newLastname);
+			person.setPersonSalary(newSalary);
+			person.setPersonAddress(newAdress);
+			
+			session.update(person);
+			session.getTransaction().commit();
+			session.close();
+			System.out.println("Güncelleme baþarýlý....");
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
 }

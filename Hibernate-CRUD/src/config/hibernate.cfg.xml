@@ -13,10 +13,15 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="hibernate.id.new_generator_mappings">false</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
-        
+        <property name="hibernate.hbm2ddl.auto">update</property>
+           <!-- 
+           	create : Mevut tabloyu drop eder, yoksada oluşturur.
+           	validate : read'te.
+           	update : update'te kullanır.
+           
+            -->
 
-        <!-- <mapping resource="entity/Person.hbm.xml" /> -->
+       
         <mapping class="entity.Person"/>
       
       </session-factory>
