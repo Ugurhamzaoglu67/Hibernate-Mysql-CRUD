@@ -12,13 +12,14 @@
         <property name="hibernate.connection.password">1994ugur</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+        <property name="hibernate.id.new_generator_mappings">false</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
         
 
         <!-- <mapping resource="entity/Person.hbm.xml" /> -->
         
-       <mapping class="entity.Kitap"/>
-       <mapping class="entity.Yazar" />
-    </session-factory>
+      	<mapping class="entity.Adres" />
+      	<mapping class ="entity.Personel" />
+      </session-factory>
    
 </hibernate-configuration>
