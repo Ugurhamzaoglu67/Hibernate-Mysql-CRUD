@@ -3,6 +3,7 @@ package util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,10 +11,10 @@ import org.hibernate.Session;
 import entity.Person;
 
 public class MainCrud {
-
+	 
 	public static void main(String[] args) {
 		
-		addPerson();
+		readPerson();
 
 	}
 	
@@ -24,15 +25,21 @@ public class MainCrud {
 			Session session  = HibernateUtil.getSessionfactory().openSession();
 			session.beginTransaction();
 			
-			Person person1 = new Person("Eylül","Sapmaz",new SimpleDateFormat("yyyy/MM/dd").parse("1996/03/03"),"Ýstanbul");
-			Person person2 = new Person("Ahmet","Güven",new SimpleDateFormat("yyyy/MM/dd").parse("1995/03/03"),"Ýzmir");
-			Person person3 = new Person("Seda","Bayindir",new SimpleDateFormat("yyyy/MM/dd").parse("1992/03/03"),"Ýstanbul");
-			Person person4 = new Person("Osman","Sevdi",new SimpleDateFormat("yyyy/MM/dd").parse("1991/03/03"),"Zonguldak");
+			Person person1 = new Person("Eylül","Sapmaz",5500.0,new SimpleDateFormat("yyyy/MM/dd").parse("1996/03/03"),"Ýstanbul");
+			Person person2 = new Person("Ahmet","Güven",6500.0,new SimpleDateFormat("yyyy/MM/dd").parse("1995/03/03"),"Ýzmir");
+			Person person3 = new Person("Seda","Bayindir",7500.5,new SimpleDateFormat("yyyy/MM/dd").parse("1992/03/03"),"Ýstanbul");
+			Person person4 = new Person("Osman","Sevdi",8500.30,new SimpleDateFormat("yyyy/MM/dd").parse("1991/03/03"),"Zonguldak");
+			Person person5 = new Person("Hatice","Güzel Pýnar",6500.30,new SimpleDateFormat("yyyy/MM/dd").parse("1991/03/03"),"London");
+			Person person6 = new Person("Didem","Pembe",4500.30,new SimpleDateFormat("yyyy/MM/dd").parse("1991/03/03"),"Muðla");
+			
+			
 			
 			session.save(person1);
 			session.save(person2);
 			session.save(person3);
 			session.save(person4);
+			session.save(person5);
+			session.save(person6);
 			
 			session.getTransaction().commit();
 			session.close();
@@ -48,6 +55,22 @@ public class MainCrud {
 		
 	}
 	
-	
+	// READ
+	public static void readPerson() {
+		Session session  = HibernateUtil.getSessionfactory().openSession();
+		session.beginTransaction();
+		List<Person> personList = session.createQuery("FROM Person").list();
+		
+		for(Person p : personList) {
+			System.out.println(p.getPersonId()+" "+p.getPersonName()+" "+p.getPersonLastname()+" "+
+					p.getPersonSalary()+" "+p.getPersonBirthDay()+" "+p.getPersonAddress());
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		System.out.println("Okuma baþarýlý...");
+		
+	}
+
 
 }

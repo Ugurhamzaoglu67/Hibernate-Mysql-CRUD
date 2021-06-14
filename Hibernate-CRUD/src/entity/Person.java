@@ -24,6 +24,9 @@ public class Person implements Serializable{
 	@Column( name="Person_last_name")
 	private String personLastname;
 	
+	@Column( name = "Person_salary")
+	private Double personSalary;
+	
 	@Temporal(TemporalType.DATE)
 	@Column( name = "Person_birthday")
 	private Date personBirthDay;
@@ -37,10 +40,11 @@ public class Person implements Serializable{
 		
 	}
 	
-	public Person(String personName, String personLastname, Date personBirthDay, String personAddress) {
+	public Person(String personName, String personLastname,Double personSalary ,Date personBirthDay, String personAddress) {
 	
 		this.personName = personName;
 		this.personLastname = personLastname;
+		this.personSalary = personSalary;
 		this.personBirthDay = personBirthDay;
 		this.personAddress = personAddress;
 	}
@@ -77,6 +81,14 @@ public class Person implements Serializable{
 	}
 	public void setPersonAddress(String personAddress) {
 		this.personAddress = personAddress;
+	}
+
+	public Double getPersonSalary() {
+		return personSalary;
+	}
+
+	public void setPersonSalary(Double personSalary) {
+		this.personSalary = personSalary;
 	}
 	
 	
