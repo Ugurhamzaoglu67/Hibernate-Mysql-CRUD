@@ -15,7 +15,7 @@ public class MainCrud {
 	 
 	public static void main(String[] args) {
 		
-		updatePerson(5,"Hande","New Lastname",6700.150,"Ankara");	
+		deletePerson(5);
 
 	}
 	
@@ -98,4 +98,27 @@ public class MainCrud {
 		}
 		
 	}
+
+	
+	// DELETE
+	private static void deletePerson(int personId) {
+		try {
+			session.beginTransaction();
+			
+			Person person = session.get(Person.class, personId);
+			session.delete(person);
+			
+			
+			session.getTransaction().commit();
+			session.close();
+			System.out.println("Silme iþlemi baþarýlý..");
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 }

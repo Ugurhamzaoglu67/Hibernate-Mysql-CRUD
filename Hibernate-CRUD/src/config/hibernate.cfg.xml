@@ -17,7 +17,7 @@
            <!-- 
            	create : Mevut tabloyu drop eder, yoksada oluşturur.
            	validate : read'te.
-           	update : update'te kullanır.
+           	update : update'te, delete kullanır.
            
             -->
 
