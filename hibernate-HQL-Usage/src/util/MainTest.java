@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.hibernate.query.criteria.JpaDmlCriteria;
 
+import com.ibm.icu.impl.locale.XCldrStub.Predicate;
 import com.sun.xml.bind.v2.runtime.reflect.ListIterator;
 
 import entity.Person;
@@ -25,7 +26,7 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
-		selectUsage();
+	
 		
 	}
 	
@@ -132,7 +133,7 @@ public class MainTest {
 		}
 		
 		
-		//selectUsage KULLANIMI ( CRETERIA API )
+		//select KULLANIMI ( CRITERIA API )
 		private static List<Person> selectUsage() {
 			
 			List<Person> mylist = null;
@@ -164,6 +165,40 @@ public class MainTest {
 			
 			return mylist;
 		}
+		
+		
+		//greater than KULLANIMI ( CRITERIA API )
+		private static List<Person> greaterThanUsage() {
+			List<Person> mylist = null;
+			
+			try {
+				Session session = HibernateUtil.getSessionfactory().openSession();
+				session.beginTransaction();
+				
+				CriteriaBuilder builder = session.getCriteriaBuilder();
+				CriteriaQuery<Person> criteria = builder.createQuery(Person.class);
+				Root<Person> root = criteria.from(Person.class);
+				criteria.select(root).where(builder.gt(root.get("personSalary"), 5000.0));
+				
+				mylist = session.createQuery(criteria).getResultList();
+				
+				for(Person p : mylist) {
+					System.out.println(p);
+				}
+				
+				session.getTransaction().commit();
+				session.close();
+						
+				
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+			return mylist;
+			
+		}
+		
 		
 }
 
